@@ -24,3 +24,4 @@ This application is still very much a work in progress, but it already has the f
 18. modifications.txt file provided in the documentation folder, and a corresponding Modifications tab in the Help menu which is shown automatically if modifications.txt is not empty
 
 The project is currently being stored as an Eclipse IDE Project, which can be experimented with and run through Eclipse IDE for Java.
+You will need Java 8 and EFXclipse installed in order to run it.
