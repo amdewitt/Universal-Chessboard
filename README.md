@@ -25,4 +25,4 @@ This application is still very much a work in progress, but it already has the f
 
 The project is currently being stored as an Eclipse IDE Project. As an alternative, a runnable JAR file is also provided, which can be run through the command prompt using the following command:
 
-java -jar "<path to file>\Universal Chessboard v0.0.jar".
+java -jar "<path to file>\Universal Chessboard v0.0.jar"
