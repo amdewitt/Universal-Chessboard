@@ -17,7 +17,7 @@ This application is still very much a work in progress, but it already has the f
 11. Support for various promotion modes (Chess-like, Shogi-style, promotion by capture, and Microshogi-style)
 12. Fully implemented promotion dialogs which appear automatically when a piece is eligible for promotion
 13. Automatically carries out promotions that are forced without displaying dialogs
-14. Help dialogs (Key Bindings and FEN Code Help Dialog completed, all others are TBC)
+14. Help dialogs (Key Bindings and FEN Code Help Dialogs completed, all others are TBC)
 15. Multi-moves, which can be executed with the mouse by Ctrl-clicking intermediate squares in order and clicking the destination square normally
 16. Keyboard shortcuts for many of the menu items, as well as for navigating through the game and undoing moves
 17. About and License buttons in the Help menu show About and lLicense text, respectively
