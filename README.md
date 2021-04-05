@@ -21,4 +21,4 @@ This application is still very much a work in progress, but it already has the f
 15. Multi-moves, which can be executed with the mouse by Ctrl-clicking intermediate squares in order and clicking the destination square normally
 16. Keyboard shortcuts for many of the menu items, as well as for navigating through the game and undoing moves
 17. About and License buttons in the Help menu show About and lLicense text, respectively
-18. modifications.txt file provided in the documentation folder, and a corresponding Modifications tab in the Help menu which is shown automatically if modifications.txt is nnot empty
+18. modifications.txt file provided in the documentation folder, and a corresponding Modifications tab in the Help menu which is shown automatically if modifications.txt is not empty
