@@ -1,0 +1,105 @@
+Pre-Alpha
+
+Iteration 1
+
+Created the basic GUI for the Universal Chessboard
+Added Chess, Xiangqi, Shogi, Yangsi, Hectochess, Ryugi, Shosu Shogi, Cannon Shosu Shogi, Futashikana Shogi, Mitsugumi Shogi, Suzumu Shogi, Chushin Shogi, Hook Shogi, and Taishin Shogi to the list of default presets.
+The Chess preset is treated as the default preset, and is hardcoded to be loaded when the application starts or when an invalid preset is found (Current solution for invalid presets, likely to be replaced by an error text box in the future).
+Implemented the following basic features:
+1. Making single moves with the mouse
+2. A display function that controls the board display, as well as a function for showing the last move
+3. Dialogs for loading games using presets, loading board positions from FEN code, and changing the board colors and highlights
+4. Flipping the board view
+5. Resetting window size and position (A necessary feature due to the high amount of variability in board size and the variable size of the effective viewing screen)
+6. A menu that provides access to the features in 3, 4, and 5,
+  Any option that can potentially affect vital board statistics disables all board events
+Added various functions that are currently unused but will likely be used in the future.
+Piece Sets
+Added piece sets for each of these games. The Chess, Yangsi, Xiangqi, and Shogi sets were taken from musketeerchess.com's Board Painting Tool, and the Shogi pieces for the large Shogi variants were hand-crafted by the author using pixilart.com.
+
+Iteration 2
+
+Added Grand Chess, Omega Chess, Gross Chess, Manchu Chess, Microshogi, and Minishogi to the list of default presets.
+Enhanced certain keywords and added new keywords for the preset files in order to properly support these games.
+Added a Help Menu to properly document how to use the Universal Chessboard.
+Added a Help section the FEN Code, as well as a FEN Code Requirements dialog within the FEN Code Dialog to show the requirements for FEN Codes of a specific game.
+Added Holdings, which give a complete piece overview and allow the user to perform drops when they are enabled.
+Added implementation for drops, which allows the user to properly play games where drops are allowed (i.e. Shogi)
+Added the keyword forcePromotions=<0, 1, or 2> which determines whether to force pieces to promote when eligible. 0 means never, 1 means as needed, and 2 means always.
+  The as needed option is currently unimplemented, but it will do different things depending on the promotion mode.
+    In Chess-style promotions and Shogi-style promotions, this option will force promotion only if the moving piece has no legal moves left.
+    In "capture" mode, this option will force promotions only if the captured piece is a promoted piece, similar to the promotion rules of Maka Dai Dai Shogi.
+    In "microshogi" mode, this option's effect is currently undefined. Current plan for this case is to make the option equal to the never option.
+Added the keyword contagious=<int pieceType> which makes the Nth piece in the list contagious.
+  Pieces that capture contagious pieces are forced to promote to the captured piece, regardless of other promotion rules (except when immune). If a piece captures multiple contagious pieces in a single move, it promotes to the last contagious piece captured.
+  Royal pieces are immune contagious promotions, since otherwise the contagious pieces would likely become too powerful.
+  In promotion modes with Shogi-style promotions, potentially royal pieces are also immune to contagious promotions.
+Added the keyword contagiousPromotion=<int pieceType>, which is identical to the contagious keyword, except it adds the value of promotionOffset to the piece number after it transforms (This keyword may be deprecated in the future).
+Added implementation for Chess style promotions and several Shogi-style promotions - namely shogi (promotion rule used normal Shogi), capture (promotion rule used in large shogi variants), and microshogi (promotion rule used in Microshogi)
+Added dialogs to allow promotions to be made with the mouse.
+Several of the new keywords and keyword enhancements were done to allow more options for promotions (i.e. to properly support games with more complex promotion rules, or to properly implement other rules, such as Microshogi allowing pieces to be dropped either promoted or unpromoted)
+Added holes, special squares that are treated as nonexistant spaces on the board (Ex. the spaces that cannot be moved to in Omega Chess).
+
+Iteration 3
+
+Added About and License items to the Help menu, which show the appropriate page when clicked.
+The license used is the GNU General Public License 3.0.
+Added a Modifications item to the Help menu which shows the contents of the corresponding file modifications.txt if it is not empty. This item does not appear in the Help menu if the modifications.txt file is empty.
+Added a dialog to load game moves from text that is similar to the FEN Code dialog. Currently, it can only fetch the game move sequence as a string.
+Added new Mnemonic piece sets for the large Shogi variants in the list of default presets. The original piece sets were made by H. G. Muller and expanded upon by the author, Adam DeWitt.
+Added buttons to navigate through the current game and undo moves, as well as a menu item that lets you start a new game.
+Added an icon for the Univeral Chessboard, which is the white Archbishop from the Yangsi set (may be changed in the future).
+
+The Universal Chessboard is first released on Github at this stage  in development.
+
+Alpha 0.0
+
+Added the keyword forceShogiPromotionZone=<int pieceType>,<int zoneSize> for creating "forced promotion zones" which force certain pieces to promote when the promotion mode is set to "shogi" (i.e. Pawns, Knights, and Lances, in Shogi).
+  Multiple instances of the keyword can be in a preset (one for each piece).
+  Useful for enforcing rules that force certain pieces to promote.
+Removed the Current Game Moves section from the Game Moves Dialog and rewrote its instructions text to match the changes.
+Added a Move History item to the View Menu, which fulfills the function of the removed section of the Games Moves Dialog, and updates in real time as moves are made or undone.
+Added implementation for loading game moves using text.
+Added an ad hoc implementation for making multi-moves with the mouse, which can be executed by Ctrl-clicking intermediate squares in order and clicking the destination square normally.
+Added a function to show the currently selected intermediate square and previously selected intermediate squares while a multi-move is in progress
+When a piece makes a multi-move to its starting square without capturing anything (called a null move), a dialog pops up asking whether the user wants to commit the move. Pressing Yes commits the null move, pressing No aborts the move and deselects the piece, and pressing Cancel aborts the move without deselecting the piece.
+  This is done to resolve the resulting ambiguity of the player's intentions, as clicking the square of the selected piece normally deselects it, leaving the board position unchanged. Committing a null move does the same thing, only it adds the move to the game's move sequence.
+  If a multi-move to the starting square involves at least one capture, no dialog is shown, since these moves change the board position (the captured pieces are removed), removing the ambiguity of the player's intentions.
+Added keyboard shortcuts to various items and a corresponding Key Bindings page to the Help Menu.
+Fixed flaws in certain functions that helped handle promotions, particularly those that involved capturing.
+Revamped the About and License pages to use the same general format as the Modifications page.
+The large Shogi variants in the list of default presets now use the Mnemonic piece sets instead of the Shogi piece sets to make it easier for new users to understand the moves of each piece (because, let's face it, traditional Shogi pieces aren't very good at this).
+
+Alpha 0.0.1
+
+Added Piece Credits section for the default piece sets and an item in the Help Menu that shows them.
+1. Chess, Yangsi, Xiangqi, Shogi sets - musketeerchess.com
+2. Mnemonic sets (Futashikana, Taishin) for large Shogi variants - H.G. Muller, expanded by the author, Adam DeWitt
+3. Shogi pieces for large Shogi variants - the author, Adam DeWitt, with Special Thanks to pixilart.com
+Added the keyword allowPromotionOnTurnSkip=<boolean allow> to allow promotions after a null move.
+  Normal promotion conditions for the preset's promotion mode are applied before this option is invoked, so if a normal move to the piece's starting/ending square does not entitle it to promote, this option does nothing.
+    Because of this, the option is meaningless if the promotion mode effectively disallows promotion on a turn skip from the start, such as promotion involve captures or Chu Shogi-style promotions (may be added in the future).
+  When the option is invoked, the corresponding promotion dialog will only appear after the null move is committed via the confirmation dialog.
+Fixed a bug where royal pieces and potentially royal pieces weren't immune to contagious promotions
+  May add keyword contagiousImmunity=<int pieceType>,<boolean isImmune> in the future for further customizing 
+Setting forcePromotions to 1 when promotionChoice is "capture" now forces promotion only if the captured piece is a promoted piece, similar to Maka Dai Dai Shogi's promotion rule.
+Fixed a rare bug where highlights of selected locust squares weren't removed in certain situations where they should have been removed
+The value of the promotionOffset keyword is now always set to 0 upon initializing a preset that does not have a promotion mode with Shogi-style promotions, regardless of what is specified
+  Presets with a promotion mode with Shogi-style promotions still operate normally
+Added name=<String nameOfGame> keyword to specify the name of the current preset's game
+Added functionality for unused author=<String authorOfGame> keyword found in presets for games not made by the author
+  The name and author keywords affect the title of the main window. When present, the title will be changed in the following ways:
+    If only the name is specified: Universal Chessboard - <name of game>
+    If only the author is specified: Universal Chessboard - (Unspecified) by <author>
+    If both are specified: Universal Chessboard - <name of game> by <author>
+    If neither are specified: Universal Chessboard
+  Updated the default presets to accomodate this change
+
+Alpha 0.0.2 (Upcoming)
+
+??Added Maka Dai Dai Shogi to Presets List
+--Added illegalDropZone=<int pieceType>,<int zoneSize> for disallowing certain pieces to be dropped on certain spaces on the board
+
+Planned
+
+|| (Beta 0.0) Added generation of pseudo legal moves
