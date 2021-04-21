@@ -9,7 +9,7 @@ This application is still very much a work in progress, but it already has many 
 The project is currently being stored as an Eclipse IDE Project and as a runnable JAR file, the latter which can be run through the command prompt using the following command:
 
 Windows:
-java -jar (path)\Universal Chessboard <version number>.jar"
+java -jar "(path)\Universal Chessboard <version number>.jar"
 
 Unix:
-java -jar (path)/Universal Chessboard <version number>.jar"
+java -jar "(path)/Universal Chessboard <version number>.jar"
