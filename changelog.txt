@@ -95,11 +95,31 @@ Added functionality for unused author=<String authorOfGame> keyword found in pre
     If neither are specified: Universal Chessboard
   Updated the default presets to accomodate this change
 
-Alpha 0.0.2 (Upcoming)
+Alpha 0.0.2
 
-??Added Maka Dai Dai Shogi to Presets List
---Added illegalDropZone=<int pieceType>,<int zoneSize> for disallowing certain pieces to be dropped on certain spaces on the board
+Added Maka Dai Dai Shogi to the list of default presets
+Added a dedicated piece set for Maka Dai Dai Shogi
+Internally, pieces in hand are now stored in a sparse matrix to save space
+Fixed a bug causing promotions to be improperly handled when using the Game Moves Dialog to load games with text
+Added Mnemonic images for  Taikyoku Shogi Pieces.
+Expanded board size limit from 26 to 52
+  New Coordinate format: 1 or 2 identical lowercase letters followed by a 1 or 2 digit number or a 1 or 2 digit number followed by 1 or 2 identical lowercase letters
+    Coords with 2 identical letters are for boards larger than 26x26, such as that of Taikyoku Shogi
+Adding Taikyoku Shogi (Simplified) to the list of default presets
+  Simplifications to select piece moves made by the author
+    This was done in order to make the game fit within the Universal Chessboard's parameters. All other rules are unchanged (follows ruleset from English Wikipedia as of April 14th, 2021)
+Revamped code for setting and getting piece images. Each part (directory, prefix, name + suffix) is now stored in a separate variable.
+  This was done to support an upcoming feature that allows users to choose between piece graphics for a game without having to loading the game preset with a different directory
+Promoting pieces with Shogi-style promotions now promote to the first promoted piece in the list if a promoted piece is not specified
+Fixed a bug where setting forcePromotions to 1 and promoChoice to capture would sometimes force a promotion even when the captured piece was unpromoted and non-contagious
+Fixed a crash due to a NullPointerException that would occur whenever value of the graphicsDir keyword did not end with a slash
+  This was because the constructor for the PieceList class returned without creating an object, which caused the application to crash when the preset loader tried to reference it later
+  The constructor now appends a slash to the piece directory if it doesn't end in a slash
+Added Reload Current Preset item to the File Menu, which reloads the current preset while preserving the current game
+  Loading screen for this feature is currently blank, but once a solution can be found, it will resemble the loading screen used for other options (i.e. Load Game Preset..., Game Moves...)
 
 Planned
 
+--Added illegalDropZone=<int pieceType>,<int zoneSize> for disallowing certain pieces to be dropped on certain spaces on the board
+--Added implementation for choosing piece graphics without reloading a game preset
 || (Beta 0.0) Added generation of pseudo legal moves
